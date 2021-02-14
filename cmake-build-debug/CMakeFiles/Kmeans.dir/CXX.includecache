@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/JetBrains/Projects/Clion/Kmeans/KmeansSequential.cpp
+iostream
+-
+fstream
+-
+sstream
+-
+vector
+-
+Point.h
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
+
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
+
