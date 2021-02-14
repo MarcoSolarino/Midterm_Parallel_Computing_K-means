@@ -36,3 +36,15 @@ double Point::getY() const {
 double Point::getZ() const {
     return z;
 }
+
+void Point::setX(double x) {
+    Point::x = x;
+}
+
+void Point::setY(double y) {
+    Point::y = y;
+}
+
+void Point::setZ(double z) {
+    Point::z = z;
+}

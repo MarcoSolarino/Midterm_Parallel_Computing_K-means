@@ -15,6 +15,12 @@ sstream
 -
 vector
 -
+chrono
+-
+random
+-
+cmath
+-
 Point.h
 D:/JetBrains/Projects/Clion/Kmeans/Point.h
 

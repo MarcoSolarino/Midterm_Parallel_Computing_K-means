@@ -16,6 +16,12 @@ public:
 
     double getZ() const;
 
+    void setX(double x);
+
+    void setY(double y);
+
+    void setZ(double z);
+
     int getCluster() const;
 
     void setCluster(int cluster);
