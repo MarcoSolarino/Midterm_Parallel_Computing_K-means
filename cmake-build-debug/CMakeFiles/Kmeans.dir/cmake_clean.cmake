@@ -1,10 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Kmeans.dir/KmeansSequential.cpp.obj"
-  "CMakeFiles/Kmeans.dir/Point.cpp.obj"
-  "Kmeans.exe"
-  "Kmeans.exe.manifest"
+  "CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o"
+  "CMakeFiles/Kmeans.dir/Point.cpp.o"
+  "CMakeFiles/Kmeans.dir/csvhandler.cpp.o"
+  "Kmeans"
   "Kmeans.pdb"
-  "libKmeans.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -4,10 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/JetBrains/Projects/Clion/Kmeans/KmeansSequential.cpp" "D:/JetBrains/Projects/Clion/Kmeans/cmake-build-debug/CMakeFiles/Kmeans.dir/KmeansSequential.cpp.obj"
-  "D:/JetBrains/Projects/Clion/Kmeans/Point.cpp" "D:/JetBrains/Projects/Clion/Kmeans/cmake-build-debug/CMakeFiles/Kmeans.dir/Point.cpp.obj"
+  "/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/KmeansSequential.cpp" "/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/cmake-build-debug/CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o"
+  "/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.cpp" "/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/cmake-build-debug/CMakeFiles/Kmeans.dir/Point.cpp.o"
+  "/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.cpp" "/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/cmake-build-debug/CMakeFiles/Kmeans.dir/csvhandler.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
