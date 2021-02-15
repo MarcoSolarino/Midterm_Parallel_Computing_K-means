@@ -2,7 +2,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <chrono>
 #include <random>
 #include <cmath>
 #include "Point.h"
@@ -42,16 +41,8 @@ void writeCsv(vector<Point>* points, int iteration) {
     file.close();
 }
 
-double randDouble(double inf, double max) {
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    mt19937 mt(seed);
-    uniform_real_distribution<double> distribution(inf, max);
-
-    double result = distribution(mt);
-    return result;
-}
-
 double distance3d(double x1, double x2, double x3, double y1, double y2, double y3) {
+    // compute euclidean distance
     double distance = sqrt(pow(x1 - y1, 2) + pow(x2 - y2, 2) + pow(x3 - y3, 2));
     return distance;
 }
@@ -59,10 +50,13 @@ double distance3d(double x1, double x2, double x3, double y1, double y2, double 
 void kMeans(vector<Point>* points, int epochs, int k) {
     // Step 1: Chose k random centroids
     vector<Point> centroids;
+    random_device rd;
+    default_random_engine engine(rd());
+    uniform_real_distribution<double> distribution(0.0, 500.0);
     for (int i=0; i<k; i++) {
-        double x = randDouble(0.0, 500.0);
-        double y = randDouble(0.0, 500.0);
-        double z = randDouble(0.0, 500.0);
+        double x = distribution(engine);
+        double y = distribution(engine);
+        double z = distribution(engine);
         Point c = Point(x, y, z);
 
         centroids.push_back(c);
