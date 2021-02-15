@@ -11,7 +11,7 @@ using namespace std;
 vector<Point> readCsv() {
     vector<Point> points;
     string line;
-    ifstream file("D:/JetBrains/Projects/Clion/Kmeans/dataset.csv", ifstream::in);
+    ifstream file("dataset.csv", ifstream::in);
 
     while (getline(file, line)) {
         stringstream lineStream(line);
@@ -129,6 +129,6 @@ void kMeans(vector<Point>* points, int epochs, int k) {
 
 int main() {
     vector<Point> data = readCsv();
-    kMeans(&data, 5, 3);
+    kMeans(&data, 7, 3);
     cout << "Test" ;
 }
