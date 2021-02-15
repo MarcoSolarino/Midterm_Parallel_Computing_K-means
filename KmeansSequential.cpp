@@ -52,13 +52,9 @@ void kMeans(vector<Point>* points, int epochs, int k) {
     vector<Point> centroids;
     random_device rd;
     default_random_engine engine(rd());
-    uniform_real_distribution<double> distribution(0.0, 500.0);
-    for (int i=0; i<k; i++) {
-        double x = distribution(engine);
-        double y = distribution(engine);
-        double z = distribution(engine);
-        Point c = Point(x, y, z);
-
+    uniform_int_distribution<int> distribution(0, points->size());
+    for(int i=0; i<3; i++) {
+        Point c = points->at(distribution(engine));
         centroids.push_back(c);
     }
 
