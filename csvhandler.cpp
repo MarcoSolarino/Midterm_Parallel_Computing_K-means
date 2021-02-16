@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <filesystem>
+//#include <filesystem>
 
 
 vector<Point> readCsv() {
@@ -46,6 +46,6 @@ void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration) {
 }
 
 void initialize(){
-    std::__fs::filesystem::remove_all("../output/");
-    std::__fs::filesystem::create_directory("../output/");
+    //std::__fs::filesystem::remove_all("../output/");
+    //std::__fs::filesystem::create_directory("../output/");
 }

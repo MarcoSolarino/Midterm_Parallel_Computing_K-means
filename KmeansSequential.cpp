@@ -100,7 +100,7 @@ void kMeans(vector<Point>* points, int epochslimit, int k) {
 
 int main() {
     initialize();
-    vector<Point> data = readCsv(); //FiXME -data[150]: appears during debug before readCsv() is called.
+    vector<Point> data = readCsv();
     kMeans(&data, 500, 3);
     cout << "Test" ;
 }
