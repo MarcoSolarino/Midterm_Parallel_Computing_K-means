@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <filesystem>
 
 
 vector<Point> readCsv() {
@@ -26,18 +27,25 @@ vector<Point> readCsv() {
         points.push_back(pt);
     }
     file.close();
+
+
     return points;
 }
 
 void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration) {
-    ofstream fileIterations("iteration" + to_string(iteration) + ".csv", ifstream::out);
+    ofstream fileIterations("../output/iteration" + to_string(iteration) + ".csv", ifstream::out);
     for(auto &point : *points) {
         fileIterations << point.getX() << "," << point.getY() << "," << point.getZ() << "," << point.getCluster() << "\n";
     }
     fileIterations.close();
 
-    ofstream fileCentroids("centroids" + to_string(iteration) + ".csv", ifstream::out);
+    ofstream fileCentroids("../output/centroids" + to_string(iteration) + ".csv", ifstream::out);
     for(auto &centroid: *centroids) {
         fileCentroids << centroid.getX() << "," << centroid.getY() << "," << centroid.getZ() << "\n";
     }
+}
+
+void initialize(){
+    std::__fs::filesystem::remove_all("../output/");
+    std::__fs::filesystem::create_directory("../output/");
 }
