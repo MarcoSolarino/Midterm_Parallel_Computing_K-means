@@ -20,8 +20,8 @@ void kMeans(vector<Point>* points, int epochslimit, int k) {
     default_random_engine engine(rd());
     uniform_int_distribution<int> distribution(0, points->size() - 1);
     for(int i=0; i<3; i++) {
-        Point c = points->at(i*111);
-        //Point c = points->at(distribution(engine));
+        //Point c = points->at(i*111);
+        Point c = points->at(distribution(engine));
         centroids.push_back(c);
     }
 
@@ -93,7 +93,7 @@ void kMeans(vector<Point>* points, int epochslimit, int k) {
             centroids.at(i).setZ(newZ);
         }
 
-        writeCsv(points, ep);
+        writeCsv(points, &centroids, ep);
     }
 
 }
