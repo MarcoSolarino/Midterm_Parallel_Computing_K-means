@@ -3,8 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <random>
-#include <cmath>
 #include "Point.h"
 
 vector<Point> readCsv() {

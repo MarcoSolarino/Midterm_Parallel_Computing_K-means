@@ -17,6 +17,14 @@ void Point::setCluster(int cluster) {
     Point::cluster = cluster;
 }
 
+int Point::getOldCluster() const{
+    return oldcluster;
+}
+
+void Point::setOldCluster(int cluster) {
+    Point::oldcluster = cluster;
+}
+
 double Point::getMaxDistance() const {
     return maxDistance;
 }
