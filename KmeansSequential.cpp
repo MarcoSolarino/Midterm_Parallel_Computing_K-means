@@ -20,7 +20,7 @@ void kMeans(vector<Point>* points, int epochs, int k) {
     vector<Point> centroids;
     random_device rd;
     default_random_engine engine(rd());
-    uniform_int_distribution<int> distribution(0, points->size());
+    uniform_int_distribution<int> distribution(0, points->size() - 1);
     for(int i=0; i<3; i++) {
         Point c = points->at(distribution(engine));
         centroids.push_back(c);
