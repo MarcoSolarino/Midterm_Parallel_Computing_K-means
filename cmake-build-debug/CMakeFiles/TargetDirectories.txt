@@ -1,3 +1,0 @@
-D:/JetBrains/Projects/Clion/Kmeans/cmake-build-debug/CMakeFiles/Kmeans.dir
-D:/JetBrains/Projects/Clion/Kmeans/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/JetBrains/Projects/Clion/Kmeans/cmake-build-debug/CMakeFiles/rebuild_cache.dir

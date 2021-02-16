@@ -1,3 +1,0 @@
-"D:\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Kmeans.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\Kmeans.dir/objects.a @CMakeFiles\Kmeans.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\Kmeans.dir/objects.a -Wl,--no-whole-archive  -o Kmeans.exe -Wl,--out-implib,libKmeans.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Kmeans.dir\linklibs.rsp
