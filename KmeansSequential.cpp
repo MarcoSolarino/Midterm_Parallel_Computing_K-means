@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <algorithm>
 #include "Point.h"
 #include "csvhandler.h"
 #include "operations.h"
@@ -83,7 +84,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
             double distMin = point.getMinDistance();  // the distance between its actual cluster' centroid
 
             int clusterIndex = point.getCluster(); // keep trace of witch cluster the point is
-            point.setOldCluster(point.getCluster()); 
+            point.setOldCluster(point.getCluster());
 
             for(int j=0; j<k; j++){
                 double y1 = centroids.at(j).getX();

@@ -6,31 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/KmeansSequential.cpp
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
+
+D:/JetBrains/Projects/Clion/Kmeans/csvhandler.cpp
+csvhandler.h
+D:/JetBrains/Projects/Clion/Kmeans/csvhandler.h
 iostream
 -
+fstream
+-
+sstream
+-
 vector
 -
-random
--
-Point.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
-csvhandler.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
-operations.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
 
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
-
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
+D:/JetBrains/Projects/Clion/Kmeans/csvhandler.h
 vector
 -
 Point.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
-
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
-Point.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
-vector
--
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
 
