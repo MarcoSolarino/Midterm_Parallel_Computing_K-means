@@ -1,25 +1,54 @@
 #include <iostream>
 #include <vector>
 #include <random>
-#include <cmath>
 #include "Point.h"
 #include "csvhandler.h"
+#include "operations.h"
+
 
 using namespace std;
 
-double distance3d(double x1, double x2, double x3, double y1, double y2, double y3) {
-    // compute euclidean distance
-    double distance = sqrt(pow(x1 - y1, 2) + pow(x2 - y2, 2) + pow(x3 - y3, 2));
-    return distance;
+double silouetteCoefficient(vector<Point>* points, Point point, vector<Point>* centroids) {
+    if (centroids->size() <= 1){
+        return 1;
+    }
+    vector<double> a;
+    vector<double> b;
+
+    // calculate nearest other cluster
+    double minDistance = 9001;
+    int nearestCluster;
+    for (int i = 0; i < centroids->size(); i++){
+        if (i != point.getCluster()){
+            double d = distance3d(point, centroids->at(i));
+            if (d < minDistance){
+                nearestCluster = i;
+                minDistance = d;
+            }
+        }
+    }
+
+
+    for (auto &otherpoint : *points) {
+        if (otherpoint.getCluster() == point.getCluster())
+            a.push_back(distance3d(otherpoint, point));
+        if (otherpoint.getCluster() == nearestCluster)
+            b.push_back(distance3d(otherpoint, point));
+    }
+
+    double maxA = *max_element(a.begin(), a.end());
+    double maxB = *max_element(b.begin(), b.end());
+
+    return (mean(a) + mean(b) ) / max(maxA ,maxB);
 }
 
-void kMeans(vector<Point>* points, int epochslimit, int k) {
+double kMeans(vector<Point>* points, int epochslimit, int k) {
     // Step 1: Chose k random centroids
     vector<Point> centroids;
     random_device rd;
     default_random_engine engine(rd());
     uniform_int_distribution<int> distribution(0, points->size() - 1);
-    for(int i=0; i<3; i++) {
+    for(int i=0; i<k; i++) {
         //Point c = points->at(i*111);
         int randomLocation = distribution(engine);
         Point c = points->at(randomLocation);
@@ -81,7 +110,7 @@ void kMeans(vector<Point>* points, int epochslimit, int k) {
 
         // exit if clusters has not been changed
         if (!clusterChanged){
-                return;
+            break;
         }
 
         writeCsv(points, &centroids, ep);
@@ -97,15 +126,45 @@ void kMeans(vector<Point>* points, int epochslimit, int k) {
             centroids.at(i).setZ(newZ);
 
         }
-
+        writeCsv(points, &centroids, ep, k);
 
     }
 
+    //calculate silhouette coefficient
+    vector<double> s;
+    for(auto & point : *points) {
+        s.push_back(silouetteCoefficient(points, point, &centroids));
+
+    }
+
+
+    return mean(s);
+
 }
 
+
 int main() {
+    vector<int> silouetteScore;
+    int maxClusters = 10;
+    int minClusters = 2;
     initialize();
-    vector<Point> data = readCsv();
-    kMeans(&data, 500, 3);
-    cout << "Test" ;
+
+
+    //repeats kmeans for different k and finds best silouette score
+    for (int k = minClusters; k <= maxClusters; k++){
+        vector<Point> data = readCsv();
+        silouetteScore.push_back(kMeans(&data, 500, k));
+    }
+
+    //find highest silouette score
+    int max = silouetteScore.at(0);
+    int bestK = minClusters;
+    for (int i = 0; i <= maxClusters - minClusters; i++){
+        if (max < silouetteScore.at(i)) {
+            max = silouetteScore.at(i);
+            bestK = i + minClusters;
+        }
+    }
+    cout << "Best k: " << bestK ;
+
 }
