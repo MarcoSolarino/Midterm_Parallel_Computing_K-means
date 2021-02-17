@@ -113,7 +113,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
             break;
         }
 
-        writeCsv(points, &centroids, ep);
+        writeCsv(points, &centroids, ep, k);
 
         //Step 3: updates centroids
 
@@ -126,7 +126,6 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
             centroids.at(i).setZ(newZ);
 
         }
-        writeCsv(points, &centroids, ep, k);
 
     }
 
