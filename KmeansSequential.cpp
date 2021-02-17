@@ -79,10 +79,11 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
             double x1 = point.getX();
             double x2 = point.getY();
             double x3 = point.getZ();
-            double distMin = point.getMaxDistance();
+            point.setMinDistance(__DBL_MAX__);
+            double distMin = point.getMinDistance();  // the distance between its actual cluster' centroid
 
             int clusterIndex = point.getCluster(); // keep trace of witch cluster the point is
-            point.setOldCluster(point.getCluster());
+            point.setOldCluster(point.getCluster()); 
 
             for(int j=0; j<k; j++){
                 double y1 = centroids.at(j).getX();
@@ -91,7 +92,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
                 double distance = distance3d(x1, x2, x3, y1, y2, y3);
 
                 if (distance < distMin) {
-                    point.setMaxDistance(distance);
+                    point.setMinDistance(distance);
                     distMin = distance;
                     point.setCluster(j);
                     clusterIndex = j;
@@ -112,6 +113,8 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
             break;
         }
 
+        writeCsv(points, &centroids, ep);
+
         //Step 3: updates centroids
 
         for(int i=0; i<k; i++) {
@@ -121,6 +124,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
             centroids.at(i).setX(newX);
             centroids.at(i).setY(newY);
             centroids.at(i).setZ(newZ);
+
         }
         writeCsv(points, &centroids, ep, k);
 
@@ -130,6 +134,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
     vector<double> s;
     for(auto & point : *points) {
         s.push_back(silouetteCoefficient(points, point, &centroids));
+
     }
 
 

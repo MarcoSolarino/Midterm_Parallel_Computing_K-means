@@ -26,15 +26,15 @@ public:
 
     void setOldCluster(int cluster);
 
-    double getMaxDistance() const;
+    double getMinDistance() const;
 
-    void setMaxDistance(double maxDistance);
+    void setMinDistance(double minDistance);
 
 private:
     double x, y, z;
     int cluster;
     int oldcluster;
-    double maxDistance;
+    double minDistance;
 };
 
 
