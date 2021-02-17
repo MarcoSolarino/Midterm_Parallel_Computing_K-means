@@ -10,16 +10,16 @@ int Point::getCluster() const {
     return cluster;
 }
 
-void Point::setCluster(int cluster) {
-    Point::cluster = cluster;
+void Point::setCluster(int c) {
+    Point::cluster = c;
 }
 
 int Point::getOldCluster() const{
     return oldcluster;
 }
 
-void Point::setOldCluster(int cluster) {
-    Point::oldcluster = cluster;
+void Point::setOldCluster(int c) {
+    Point::oldcluster = c;
 }
 
 double Point::getMinDistance() const {
@@ -42,14 +42,14 @@ double Point::getZ() const {
     return z;
 }
 
-void Point::setX(double x) {
-    Point::x = x;
+void Point::setX(double xVal) {
+    Point::x = xVal;
 }
 
-void Point::setY(double y) {
-    Point::y = y;
+void Point::setY(double yVal) {
+    Point::y = yVal;
 }
 
-void Point::setZ(double z) {
-    Point::z = z;
+void Point::setZ(double zVal) {
+    Point::z = zVal;
 }
