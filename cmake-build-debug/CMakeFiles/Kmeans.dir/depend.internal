@@ -5,6 +5,7 @@ CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/KmeansSequential.cpp
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
+ /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
 CMakeFiles/Kmeans.dir/Point.cpp.o
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.cpp
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
@@ -12,3 +13,7 @@ CMakeFiles/Kmeans.dir/csvhandler.cpp.o
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.cpp
  /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
+CMakeFiles/Kmeans.dir/operations.cpp.o
+ /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+ /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.cpp
+ /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h

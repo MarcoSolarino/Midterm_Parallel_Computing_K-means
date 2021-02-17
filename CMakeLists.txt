@@ -3,7 +3,7 @@ project(Kmeans)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Kmeans KmeansSequential.cpp Point.cpp Point.h csvhandler.h csvhandler.cpp)
+add_executable(Kmeans KmeansSequential.cpp Point.cpp Point.h csvhandler.h csvhandler.cpp operations.cpp operations.h)
 
 #find_package(PythonLibs REQUIRED)
 #include_directories(${PYTHON_INCLUDE_DIRS})

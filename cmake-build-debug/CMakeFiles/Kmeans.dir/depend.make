@@ -4,6 +4,7 @@
 CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o: ../KmeansSequential.cpp
 CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o: ../Point.h
 CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o: ../csvhandler.h
+CMakeFiles/Kmeans.dir/KmeansSequential.cpp.o: ../operations.h
 
 CMakeFiles/Kmeans.dir/Point.cpp.o: ../Point.cpp
 CMakeFiles/Kmeans.dir/Point.cpp.o: ../Point.h
@@ -11,4 +12,8 @@ CMakeFiles/Kmeans.dir/Point.cpp.o: ../Point.h
 CMakeFiles/Kmeans.dir/csvhandler.cpp.o: ../Point.h
 CMakeFiles/Kmeans.dir/csvhandler.cpp.o: ../csvhandler.cpp
 CMakeFiles/Kmeans.dir/csvhandler.cpp.o: ../csvhandler.h
+
+CMakeFiles/Kmeans.dir/operations.cpp.o: ../Point.h
+CMakeFiles/Kmeans.dir/operations.cpp.o: ../operations.cpp
+CMakeFiles/Kmeans.dir/operations.cpp.o: ../operations.h
 

@@ -13,12 +13,12 @@ vector
 -
 random
 -
-cmath
--
 Point.h
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
 csvhandler.h
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
+operations.h
+/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
 
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
 
@@ -33,12 +33,16 @@ sstream
 -
 vector
 -
-filesystem
--
 
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
 vector
 -
 Point.h
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+
+/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
+Point.h
+/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+vector
+-
 

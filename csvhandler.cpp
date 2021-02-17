@@ -28,18 +28,17 @@ vector<Point> readCsv() {
     }
     file.close();
 
-
     return points;
 }
 
-void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration) {
-    ofstream fileIterations("../output/iteration" + to_string(iteration) + ".csv", ifstream::out);
+void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration, int k) {
+    ofstream fileIterations("../output/k" + to_string(k) + "iteration" + to_string(iteration) + ".csv", ifstream::out);
     for(auto &point : *points) {
         fileIterations << point.getX() << "," << point.getY() << "," << point.getZ() << "," << point.getCluster() << "\n";
     }
     fileIterations.close();
 
-    ofstream fileCentroids("../output/centroids" + to_string(iteration) + ".csv", ifstream::out);
+    ofstream fileCentroids("../output/k" + to_string(k) + "centroids" + to_string(iteration) + ".csv", ifstream::out);
     for(auto &centroid: *centroids) {
         fileCentroids << centroid.getX() << "," << centroid.getY() << "," << centroid.getZ() << "\n";
     }
