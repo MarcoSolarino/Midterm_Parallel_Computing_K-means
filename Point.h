@@ -1,7 +1,3 @@
-//
-// Created by Marco on 13/02/2021.
-// modified by Simone
-
 #ifndef KMEANS_POINT_H
 #define KMEANS_POINT_H
 

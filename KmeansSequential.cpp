@@ -5,6 +5,7 @@
 #include "csvhandler.h"
 #include "operations.h"
 
+
 using namespace std;
 
 double silouetteCoefficient(vector<Point>* points, Point point, vector<Point>* centroids) {
@@ -138,10 +139,10 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
 
 
 int main() {
-    initialize();
     vector<int> silouetteScore;
     int maxClusters = 10;
     int minClusters = 2;
+    initialize();
 
 
     //repeats kmeans for different k and finds best silouette score
