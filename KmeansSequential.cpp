@@ -122,6 +122,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
         }
 
         writeCsv(points, &centroids, ep, k);
+        writeCsv(points, &centroids, 9001, k); //last iteration is also 9001
         lastEpoch++;
 
         //Step 3: updates centroids
