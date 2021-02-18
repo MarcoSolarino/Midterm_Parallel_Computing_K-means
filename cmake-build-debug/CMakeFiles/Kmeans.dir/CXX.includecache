@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/KmeansSequential.cpp
+D:/JetBrains/Projects/Clion/Kmeans/KmeansSequential.cpp
 iostream
 -
 vector
@@ -16,23 +16,23 @@ random
 algorithm
 -
 Point.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
 csvhandler.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
+D:/JetBrains/Projects/Clion/Kmeans/csvhandler.h
 operations.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
+D:/JetBrains/Projects/Clion/Kmeans/operations.h
 
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
 
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/csvhandler.h
+D:/JetBrains/Projects/Clion/Kmeans/csvhandler.h
 vector
 -
 Point.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
 
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
+D:/JetBrains/Projects/Clion/Kmeans/operations.h
 Point.h
-/Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
+D:/JetBrains/Projects/Clion/Kmeans/Point.h
 vector
 -
 

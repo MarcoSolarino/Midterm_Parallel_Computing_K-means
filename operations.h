@@ -10,4 +10,4 @@ double distance3d(double x1, double x2, double x3, double y1, double y2, double 
 
 double distance3d(Point p1, Point p2);
 
-double mean(const std::vector<double>& v);
+double mean(std::vector<double>* v);
