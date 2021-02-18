@@ -12,19 +12,19 @@ public:
 
     double getZ() const;
 
-    void setX(double x);
+    void setX(double xVal);
 
-    void setY(double y);
+    void setY(double yVal);
 
-    void setZ(double z);
+    void setZ(double zVal);
 
     int getCluster() const;
 
-    void setCluster(int cluster);
+    void setCluster(int c);
 
     int getOldCluster() const;
 
-    void setOldCluster(int cluster);
+    void setOldCluster(int c);
 
     double getMinDistance() const;
 

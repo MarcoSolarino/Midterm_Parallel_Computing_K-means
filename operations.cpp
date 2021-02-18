@@ -1,5 +1,4 @@
 #include "operations.h"
-#include "Point.h"
 #include <cmath>
 #include <vector>
 
@@ -21,7 +20,7 @@ double distance3d(Point p1, Point p2){
     return distance3d(x1, x2, x3, y1, y2, y3);
 }
 
-double mean(vector<double> v){
+double mean(const vector<double>& v){
     double mean = 0;
     for (auto &value : v){
         mean += value;
