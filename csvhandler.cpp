@@ -42,7 +42,8 @@ void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration, in
     for(auto &centroid: *centroids) {
         fileCentroids << centroid.getX() << "," << centroid.getY() << "," << centroid.getZ() << "\n";
     }
-    fileCentroids.close();
+    fileIterations.close();
+
 }
 
 void initialize(){
