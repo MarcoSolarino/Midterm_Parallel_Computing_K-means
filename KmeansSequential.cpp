@@ -39,12 +39,8 @@ double silhouetteCoefficient(vector<Point> *points, Point point, vector<Point> *
 
     double meanA = mean(&a);
     double meanB = mean(&b);
-    double denom = max(meanA , meanB);
 
-    double result = (meanB - meanA) / denom;
-
-    return result; //TODO write it better
-    //return (mean(a) + mean(b) ) / max(maxA ,maxB);
+    return (meanB - meanA) / max(meanA , meanB);
 }
 
 double kMeans(vector<Point> *points, int epochsLimit, int k) {
@@ -56,6 +52,7 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
     int lastEpoch = 0;
     for(int i=0; i<k; i++) {
         int randomLocation = distribution(engine);
+        //Point c = points->at(111*i);
         Point c = points->at(randomLocation);
         centroids.push_back(c);
     }
