@@ -37,16 +37,13 @@ double silhouetteCoefficient(vector<Point>* points, Point point, vector<Point>* 
             b.push_back(distance3d(otherpoint, point));
     }
 
-    double maxA = *max_element(a.begin(), a.end());
-    double maxB = *max_element(b.begin(), b.end());
-
     double meanA = mean(a);
     double meanB = mean(b);
     double denom = max(meanA , meanB);
 
     double result = (meanB - meanA) / denom;
 
-    return result;
+    return result; //TODO write it better
     //return (mean(a) + mean(b) ) / max(maxA ,maxB);
 }
 
