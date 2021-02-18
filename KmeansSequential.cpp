@@ -56,6 +56,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
     random_device rd;
     default_random_engine engine(rd());
     uniform_int_distribution<int> distribution(0, points->size() - 1);
+    int lastEpoch = -1;
     for(int i=0; i<k; i++) {
         int randomLocation = distribution(engine);
         Point c = points->at(randomLocation);
@@ -121,6 +122,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
         }
 
         writeCsv(points, &centroids, ep, k);
+        lastEpoch++;
 
         //Step 3: updates centroids
 
@@ -134,6 +136,8 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
 
         }
 
+
+
     }
 
     //calculate silhouette coefficient
@@ -142,7 +146,7 @@ double kMeans(vector<Point>* points, int epochslimit, int k) {
         s.push_back(silhouetteCoefficient(points, point, &centroids));
     }
 
-
+    cout << "k = " << k << " -> iterations = " << lastEpoch << "\n";
     return mean(s);
 
 }
@@ -165,11 +169,11 @@ int main() {
     double bestScore = *max_element(silhouetteScore.begin(), silhouetteScore.end());
     int bestK;
     for (int i = 0; i < silhouetteScore.size(); i++){
-        cout << "k = " << i+minClusters << " -> " << silhouetteScore.at(i) << "\n";
+        cout << "k = " << i+minClusters << " -> score = " << silhouetteScore.at(i) << "\n";
         if (silhouetteScore.at(i) == bestScore) {
             bestK = i + minClusters;
         }
     }
-    cout << "Best k: " << bestK ;
+    cout << "Best k: " << bestK;
 
 }
