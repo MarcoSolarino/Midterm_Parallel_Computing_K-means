@@ -3,7 +3,7 @@
 Point::Point(double x, double y, double z) : x(x), y(y), z(z) {
     cluster = -1;
     oldcluster = -1;
-    minDistance = __DBL_MAX__;
+    clusterDistance = __DBL_MAX__;
 }
 
 int Point::getCluster() const {
@@ -22,12 +22,12 @@ void Point::setOldCluster(int c) {
     Point::oldcluster = c;
 }
 
-double Point::getMinDistance() const {
-    return minDistance;
+double Point::getClusterDistance() const {
+    return clusterDistance;
 }
 
-void Point::setMinDistance(double maxDistance) {
-    Point::minDistance = maxDistance;
+void Point::setClusterDistance(double distance) {
+    Point::clusterDistance = distance;
 }
 
 double Point::getX() const {

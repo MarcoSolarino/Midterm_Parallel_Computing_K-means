@@ -60,7 +60,7 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
     // repeat step 2 and 3 for a number of times less than epochsLimit or until nothing happens
 
     for(int ep=0; ep < epochsLimit; ep++) {
-        bool clusterChanged = false;
+        bool clustersChanged = false;
 
         //Step 2: assign dataPoints to the clusters, based on the distance from its centroids
 
@@ -78,24 +78,17 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
         }
 
         for (auto &point : *points) {
-            double x1 = point.getX();
-            double x2 = point.getY();
-            double x3 = point.getZ();
-            point.setMinDistance(__DBL_MAX__);
-            double distMin = point.getMinDistance();  // the distance between its actual cluster' centroid
-
-            int clusterIndex = point.getCluster(); // keep trace of witch cluster the point is
+            point.setClusterDistance(__DBL_MAX__);
             point.setOldCluster(point.getCluster());
 
-            for (int j = 0; j < k; j++) {
-                double y1 = centroids.at(j).getX();
-                double y2 = centroids.at(j).getY();
-                double y3 = centroids.at(j).getZ();
-                double distance = distance3d(x1, x2, x3, y1, y2, y3);
+            double clusterDistance = point.getClusterDistance();  // the distance between its actual cluster' centroid
+            int clusterIndex = point.getCluster(); // keep trace of witch cluster the point is
 
-                if (distance < distMin) {
-                    point.setMinDistance(distance);
-                    distMin = distance;
+            for (int j = 0; j < k; j++) {
+                double distance = distance3d(centroids.at(j), point);
+                if (distance < clusterDistance) {
+                    point.setClusterDistance(distance);
+                    clusterDistance = distance;
                     point.setCluster(j);
                     clusterIndex = j;
                 }
@@ -105,13 +98,14 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
             sumX.at(clusterIndex) += point.getX();
             sumY.at(clusterIndex) += point.getY();
             sumZ.at(clusterIndex) += point.getZ();
+
             if (point.getCluster() != point.getOldCluster()) {
-                clusterChanged = true;
+                clustersChanged = true;
             }
         }
 
         // exit if clusters has not been changed
-        if (!clusterChanged) {
+        if (!clustersChanged) {
             break;
         }
 
@@ -128,7 +122,6 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
             centroids.at(i).setX(newX);
             centroids.at(i).setY(newY);
             centroids.at(i).setZ(newZ);
-
         }
 
     }
