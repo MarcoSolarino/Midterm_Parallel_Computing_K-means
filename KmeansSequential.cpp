@@ -80,6 +80,7 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
             sumZ.push_back(0.0);
         }
 
+        // assign points to the clusters
         for (auto &point : *points) {
             double x1 = point.getX();
             double x2 = point.getY();

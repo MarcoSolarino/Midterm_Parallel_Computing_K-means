@@ -6,33 +6,23 @@
 
 #IncludeRegexTransform: 
 
-D:/JetBrains/Projects/Clion/Kmeans/KmeansSequential.cpp
-iostream
--
-vector
--
-random
--
-algorithm
--
-Point.h
 D:/JetBrains/Projects/Clion/Kmeans/Point.h
+
+D:/JetBrains/Projects/Clion/Kmeans/csvhandler.cpp
 csvhandler.h
 D:/JetBrains/Projects/Clion/Kmeans/csvhandler.h
-operations.h
-D:/JetBrains/Projects/Clion/Kmeans/operations.h
-
-D:/JetBrains/Projects/Clion/Kmeans/Point.h
+iostream
+-
+fstream
+-
+sstream
+-
+vector
+-
 
 D:/JetBrains/Projects/Clion/Kmeans/csvhandler.h
 vector
 -
 Point.h
 D:/JetBrains/Projects/Clion/Kmeans/Point.h
-
-D:/JetBrains/Projects/Clion/Kmeans/operations.h
-Point.h
-D:/JetBrains/Projects/Clion/Kmeans/Point.h
-vector
--
 
