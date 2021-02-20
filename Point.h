@@ -26,15 +26,15 @@ public:
 
     void setOldCluster(int c);
 
-    double getMinDistance() const;
+    double getClusterDistance() const;
 
-    void setMinDistance(double minDistance);
+    void setClusterDistance(double minDistance);
 
 private:
     double x, y, z;
     int cluster;
     int oldcluster;
-    double minDistance;
+    double clusterDistance;
 };
 
 
