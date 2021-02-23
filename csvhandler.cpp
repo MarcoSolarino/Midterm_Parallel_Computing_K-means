@@ -14,7 +14,7 @@ vector<Point> readCsv() {
     while (getline(file, line)) {
         stringstream lineStream(line);
         string bit;
-        double x, y, z;
+        float x, y, z;
         getline(lineStream, bit, ',');
         x = stod(bit);
         getline(lineStream, bit, ',');

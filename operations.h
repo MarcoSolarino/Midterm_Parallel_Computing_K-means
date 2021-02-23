@@ -6,8 +6,8 @@
 #include "Point.h"
 #include <vector>
 
-double distance3d(double x1, double x2, double x3, double y1, double y2, double y3);
+float distance3d(float x1, float x2, float x3, float y1, float y2, float y3);
 
-double distance3d(Point p1, Point p2);
+float distance3d(Point p1, Point p2);
 
-double mean(std::vector<double>* v);
+float mean(std::vector<float>* v);

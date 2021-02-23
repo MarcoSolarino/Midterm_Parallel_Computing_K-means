@@ -1,6 +1,6 @@
 #include "Point.h"
 
-Point::Point(double x, double y, double z) : x(x), y(y), z(z) {
+Point::Point(float x, float y, float z) : x(x), y(y), z(z) {
     cluster = -1;
     oldcluster = -1;
     clusterDistance = __DBL_MAX__;
@@ -22,34 +22,34 @@ void Point::setOldCluster(int c) {
     Point::oldcluster = c;
 }
 
-double Point::getClusterDistance() const {
+float Point::getClusterDistance() const {
     return clusterDistance;
 }
 
-void Point::setClusterDistance(double distance) {
+void Point::setClusterDistance(float distance) {
     Point::clusterDistance = distance;
 }
 
-double Point::getX() const {
+float Point::getX() const {
     return x;
 }
 
-double Point::getY() const {
+float Point::getY() const {
     return y;
 }
 
-double Point::getZ() const {
+float Point::getZ() const {
     return z;
 }
 
-void Point::setX(double xVal) {
+void Point::setX(float xVal) {
     Point::x = xVal;
 }
 
-void Point::setY(double yVal) {
+void Point::setY(float yVal) {
     Point::y = yVal;
 }
 
-void Point::setZ(double zVal) {
+void Point::setZ(float zVal) {
     Point::z = zVal;
 }

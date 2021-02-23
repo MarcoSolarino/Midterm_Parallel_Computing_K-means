@@ -9,19 +9,19 @@
 
 using namespace std;
 
-double silhouetteCoefficient(vector<Point> *points, Point point, vector<Point> *centroids) {
+float silhouetteCoefficient(vector<Point> *points, Point point, vector<Point> *centroids) {
     if (centroids->size() <= 1) {
         return -1;
     }
-    vector<double> a;
-    vector<double> b;
+    vector<float> a;
+    vector<float> b;
 
     // calculate nearest other cluster
     auto minDistance = __DBL_MAX__;
     int nearestCluster;
     for (int i = 0; i < centroids->size(); i++) {
         if (i != point.getCluster()) {
-            double d = distance3d(point, centroids->at(i));
+            float d = distance3d(point, centroids->at(i));
             if (d < minDistance) {
                 nearestCluster = i;
                 minDistance = d;
@@ -37,13 +37,13 @@ double silhouetteCoefficient(vector<Point> *points, Point point, vector<Point> *
             b.push_back(distance3d(otherPoint, point));
     }
 
-    double meanA = mean(&a);
-    double meanB = mean(&b);
+    float meanA = mean(&a);
+    float meanB = mean(&b);
 
     return (meanB - meanA) / max(meanA , meanB);
 }
 
-double kMeans(vector<Point> *points, int epochsLimit, int k) {
+float kMeans(vector<Point> *points, int epochsLimit, int k) {
     // Step 1: Chose k random centroids
     vector<Point> centroids;
     random_device rd;
@@ -65,9 +65,9 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
         //Step 2: assign dataPoints to the clusters, based on the distance from its centroids
 
         vector<int> numPoints; // keep trace of the number of points in each cluster
-        vector<double> sumX;   // will be used to update centroids through the mean point of the clusters
-        vector<double> sumY;
-        vector<double> sumZ;
+        vector<float> sumX;   // will be used to update centroids through the mean point of the clusters
+        vector<float> sumY;
+        vector<float> sumZ;
 
         //initialize with zeros
         for (int i = 0; i < k; i++) {
@@ -82,11 +82,11 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
             point.setClusterDistance(__DBL_MAX__);
             point.setOldCluster(point.getCluster());
 
-            double clusterDistance = point.getClusterDistance();  // the distance between its actual cluster' centroid
+            float clusterDistance = point.getClusterDistance();  // the distance between its actual cluster' centroid
             int clusterIndex = point.getCluster(); // keep trace of witch cluster the point is
 
             for (int j = 0; j < k; j++) {
-                double distance = distance3d(centroids.at(j), point);
+                float distance = distance3d(centroids.at(j), point);
                 if (distance < clusterDistance) {
                     point.setClusterDistance(distance);
                     clusterDistance = distance;
@@ -117,9 +117,9 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
         //Step 3: updates centroids
 
         for (int i = 0; i < k; i++) {
-            double newX = sumX.at(i) / numPoints.at(i);
-            double newY = sumY.at(i) / numPoints.at(i);
-            double newZ = sumZ.at(i) / numPoints.at(i);
+            float newX = sumX.at(i) / numPoints.at(i);
+            float newY = sumY.at(i) / numPoints.at(i);
+            float newZ = sumZ.at(i) / numPoints.at(i);
             centroids.at(i).setX(newX);
             centroids.at(i).setY(newY);
             centroids.at(i).setZ(newZ);
@@ -128,19 +128,19 @@ double kMeans(vector<Point> *points, int epochsLimit, int k) {
     }
 
     //calculate silhouette coefficient
-    vector<double> s;
+    vector<float> s;
     for (auto &point : *points) {
         s.push_back(silhouetteCoefficient(points, point, &centroids));
     }
 
     cout << "k = " << k << " -> iterations = " << lastEpoch << "\n";
-    double m = mean(&s);
+    float m = mean(&s);
     return m;
 }
 
 
 int main() {
-    vector<double> silhouetteScore;
+    vector<float> silhouetteScore;
     int maxClusters = 10;
     int minClusters = 2;
     initialize();
@@ -154,7 +154,7 @@ int main() {
     }
 
     //find highest silhouette score
-    double bestScore = *max_element(silhouetteScore.begin(), silhouetteScore.end());
+    float bestScore = *max_element(silhouetteScore.begin(), silhouetteScore.end());
     int bestK;
     for (int i = 0; i < silhouetteScore.size(); i++){
         cout << "k = " << i+minClusters << " -> score = " << silhouetteScore.at(i) << "\n";

@@ -4,19 +4,19 @@
 
 class Point {
 public:
-    Point(double x, double y, double z);
+    Point(float x, float y, float z);
 
-    double getX() const;
+    float getX() const;
 
-    double getY() const;
+    float getY() const;
 
-    double getZ() const;
+    float getZ() const;
 
-    void setX(double xVal);
+    void setX(float xVal);
 
-    void setY(double yVal);
+    void setY(float yVal);
 
-    void setZ(double zVal);
+    void setZ(float zVal);
 
     int getCluster() const;
 
@@ -26,15 +26,15 @@ public:
 
     void setOldCluster(int c);
 
-    double getClusterDistance() const;
+    float getClusterDistance() const;
 
-    void setClusterDistance(double minDistance);
+    void setClusterDistance(float minDistance);
 
 private:
-    double x, y, z;
+    float x, y, z;
     int cluster;
     int oldcluster;
-    double clusterDistance;
+    float clusterDistance;
 };
 
 
