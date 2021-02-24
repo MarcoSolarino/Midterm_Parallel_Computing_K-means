@@ -29,7 +29,6 @@ float silhouetteCoefficient(vector<Point> *points, Point point, vector<Point> *c
         }
     }
 
-
     for (auto &otherPoint : *points) {
         if (otherPoint.getCluster() == point.getCluster())
             a.push_back(distance3d(otherPoint, point));
@@ -64,18 +63,10 @@ float kMeans(vector<Point> *points, int epochsLimit, int k) {
 
         //Step 2: assign dataPoints to the clusters, based on the distance from its centroids
 
-        vector<int> numPoints; // keep trace of the number of points in each cluster
-        vector<float> sumX;   // will be used to update centroids through the mean point of the clusters
-        vector<float> sumY;
-        vector<float> sumZ;
-
-        //initialize with zeros
-        for (int i = 0; i < k; i++) {
-            numPoints.push_back(0);
-            sumX.push_back(0.0);
-            sumY.push_back(0.0);
-            sumZ.push_back(0.0);
-        }
+        vector<int> numPoints(k, 0); // keep trace of the number of points in each cluster
+        vector<float> sumX(k, 0.0);
+        vector<float> sumY(k, 0.0);
+        vector<float> sumZ(k, 0.0);
 
         // assign points to the clusters
         for (auto &point : *points) {

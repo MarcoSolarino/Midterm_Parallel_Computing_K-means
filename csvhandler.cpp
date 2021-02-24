@@ -47,7 +47,6 @@ void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration, in
 }
 
 void initialize(){
-
     std::filesystem::remove_all("../output/");
     std::filesystem::create_directory("../output/");
 }
