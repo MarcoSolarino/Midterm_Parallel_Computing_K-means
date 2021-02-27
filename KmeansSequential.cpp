@@ -9,40 +9,7 @@
 
 using namespace std;
 
-float silhouetteCoefficient(vector<Point> *points, Point point, vector<Point> *centroids) {
-    if (centroids->size() <= 1) {
-        return -1;
-    }
-    vector<float> a;
-    vector<float> b;
-
-    // calculate nearest other cluster
-    auto minDistance = __DBL_MAX__;
-    int nearestCluster;
-    for (int i = 0; i < centroids->size(); i++) {
-        if (i != point.getCluster()) {
-            float d = distance3d(point, centroids->at(i));
-            if (d < minDistance) {
-                nearestCluster = i;
-                minDistance = d;
-            }
-        }
-    }
-
-    for (auto &otherPoint : *points) {
-        if (otherPoint.getCluster() == point.getCluster())
-            a.push_back(distance3d(otherPoint, point));
-        if (otherPoint.getCluster() == nearestCluster)
-            b.push_back(distance3d(otherPoint, point));
-    }
-
-    float meanA = mean(&a);
-    float meanB = mean(&b);
-
-    return (meanB - meanA) / max(meanA , meanB);
-}
-
-float kMeans(vector<Point> *points, int epochsLimit, int k) {
+void kMeans(vector<Point> *points, int epochsLimit, int k) {
     // Step 1: Chose k random centroids
     vector<Point> centroids;
     random_device rd;
@@ -51,7 +18,6 @@ float kMeans(vector<Point> *points, int epochsLimit, int k) {
     int lastEpoch = 0;
     for(int i=0; i<k; i++) {
         int randomLocation = distribution(engine);
-        //Point c = points->at(111*i);
         Point c = points->at(randomLocation);
         centroids.push_back(c);
     }
@@ -102,7 +68,7 @@ float kMeans(vector<Point> *points, int epochsLimit, int k) {
         }
 
         writeCsv(points, &centroids, ep, k);
-        writeCsv(points, &centroids, 9001, k); //last iteration is also 9001
+        writeCsv(points, &centroids, __INT_MAX__, k); //last iteration is also 9001
         lastEpoch++;
 
         //Step 3: updates centroids
@@ -115,44 +81,14 @@ float kMeans(vector<Point> *points, int epochsLimit, int k) {
             centroids.at(i).setY(newY);
             centroids.at(i).setZ(newZ);
         }
-
     }
-
-    //calculate silhouette coefficient
-    vector<float> s;
-    for (auto &point : *points) {
-        s.push_back(silhouetteCoefficient(points, point, &centroids));
-    }
-
-    cout << "k = " << k << " -> iterations = " << lastEpoch << "\n";
-    float m = mean(&s);
-    return m;
+    cout << "iterations = " << lastEpoch << "\n";
 }
 
 
 int main() {
-    vector<float> silhouetteScore;
-    int maxClusters = 10;
-    int minClusters = 2;
     initialize();
-
-
-    //repeats kMeans for different k and finds best silhouette score
-
-    for (int k = minClusters; k <= maxClusters; k++) {
-        vector<Point> data = readCsv();
-        silhouetteScore.push_back(kMeans(&data, 500, k));
-    }
-
-    //find highest silhouette score
-    float bestScore = *max_element(silhouetteScore.begin(), silhouetteScore.end());
-    int bestK;
-    for (int i = 0; i < silhouetteScore.size(); i++){
-        cout << "k = " << i+minClusters << " -> score = " << silhouetteScore.at(i) << "\n";
-        if (silhouetteScore.at(i) == bestScore) {
-            bestK = i + minClusters;
-        }
-    }
-    cout << "Best k: " << bestK;
+    vector<Point> data = readCsv();
+    kMeans(&data, 500, 10);
 
 }
