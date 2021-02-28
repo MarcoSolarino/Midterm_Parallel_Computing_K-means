@@ -16,11 +16,11 @@ vector<Point> readCsv() {
         string bit;
         float x, y, z;
         getline(lineStream, bit, ',');
-        x = stod(bit);
+        x = stof(bit);
         getline(lineStream, bit, ',');
-        y = stod(bit);
+        y = stof(bit);
         getline(lineStream, bit, '\n');
-        z = stod(bit);
+        z = stof(bit);
 
         Point pt = Point(x, y, z);
 

@@ -98,7 +98,7 @@ void kMeans(vector<Point> *points, int epochsLimit, int k) {
     if (lastEpoch == epochsLimit){
         cout << "Maximum number of iterations reached!";
     }
-    cout << "iterations = " << lastEpoch << "\n";
+    cout << "iterations = " << lastEpoch + 1 << "\n";
 }
 
 
