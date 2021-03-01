@@ -94,7 +94,6 @@ void kMeans(vector<Point> *points, int epochsLimit, int k) {
     }
 
 
-    writeCsv(points, &centroids, __INT_MAX__, k);
     if (lastEpoch == epochsLimit){
         cout << "Maximum number of iterations reached!";
     }
