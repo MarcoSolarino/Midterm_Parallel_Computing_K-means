@@ -7,8 +7,10 @@
 
 using namespace std;
 
-vector<Point> readCsv();
+vector<Point> readCsv(int nd);
 
 void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration, int k);
+
+void writeDurationCsv(int* meanVectorDuration);
 
 void initialize();
