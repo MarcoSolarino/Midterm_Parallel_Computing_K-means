@@ -5,8 +5,9 @@
 #include "Point.h"
 #include "csvhandler.h"
 #include "operations.h"
+#include <chrono>
 
-
+using namespace std::chrono;
 using namespace std;
 
 void updateCentroids(vector<Point> *points, vector<Point> *centroids, int k){
@@ -103,7 +104,35 @@ void kMeans(vector<Point> *points, int epochsLimit, int k) {
 
 int main() {
     initialize();
-    vector<Point> data = readCsv();
-    kMeans(&data, 500, 10);
+    int numDataset = 10;
+    int *meanVectorDuration = (int*)malloc(sizeof(int) * numDataset);
+
+    for (int nd = 0; nd<numDataset; nd++) {
+        vector<Point> data = readCsv(nd +1);
+        int numIter = 100;
+
+        vector<int> durations;
+        for (int i=0; i<numIter; i++) {
+            auto start = high_resolution_clock::now();
+            kMeans(&data, 500, 10);
+            auto end = high_resolution_clock::now();
+            int duration = duration_cast<microseconds>(end - start).count();
+            durations.push_back(duration);
+            //cout << "iteration " << i << " terminated in " << duration << " microseconds" << endl;
+        }
+
+
+        int partialSum = 0;
+        for (int j=0; j<numIter; j++) {
+            partialSum += durations.at(j);
+        }
+        int meanDuration = partialSum / numIter;
+        cout << "Kmeans finished with a mean duration of " << meanDuration << " microseconds" << endl;
+
+        meanVectorDuration[nd] = meanDuration;
+    }
+
+    writeDurationCsv(meanVectorDuration);
+    free(meanVectorDuration);
 
 }

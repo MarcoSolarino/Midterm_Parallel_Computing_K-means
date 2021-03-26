@@ -6,10 +6,10 @@
 #include <filesystem>
 
 
-vector<Point> readCsv() {
+vector<Point> readCsv(int nd) {
     vector<Point> points;
     string line;
-    ifstream file("../dataset.csv", ifstream::in);
+    ifstream file("../input/dataset" + to_string(nd) + ".csv", ifstream::in);
 
     while (getline(file, line)) {
         stringstream lineStream(line);
@@ -44,6 +44,14 @@ void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration, in
     }
     fileIterations.close();
 
+}
+
+void writeDurationCsv(int* meanVectorDuration) {
+    ofstream fileDuration("durationSeq.csv", ifstream::out);
+    for (int i=0; i<10; i++) { //TODO change 10
+        fileDuration << meanVectorDuration[i] << "\n";
+    }
+    fileDuration.close();
 }
 
 void initialize(){
