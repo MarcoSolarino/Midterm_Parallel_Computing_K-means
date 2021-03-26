@@ -18,4 +18,4 @@ After running program you can plot results with
 ```
 python plot.py K I
 ```
-where K is the number of clusters and I is the last iteration
+where K is the number of clusters and I is the number of iterations
