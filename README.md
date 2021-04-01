@@ -2,8 +2,7 @@
 This repository contains the midterm project for parallel computing course
 
 ## Generating dataset
-
-You can generate dataset with 
+first you need to generate dataset
 ```
 python datasetgen.py N K STD
 ```
@@ -13,9 +12,7 @@ python datasetgen.py 1000 3 0.45
 ```
 
 ## Plotting
-
-After running program you can plot results with 
 ```
-python plot.py K I
+python plot.py
 ```
-where K is the number of clusters and I is the number of iterations
+After running program you can plot result
