@@ -13,5 +13,7 @@ array = X.tolist()
 for a in array:
     a.append(0)
 nparray = np.array(array)
-np.savetxt("dataset.csv", nparray, delimiter=",", fmt='%f')
+if not os.path.exists('input'):
+    os.makedirs('input')
+np.savetxt("input/dataset.csv", nparray, delimiter=",", fmt='%f')
 print('dataset of ' + str(points_num) + ' points created!')
