@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/KmeansSequential.cpp
-iostream
--
 vector
 -
 random
@@ -33,6 +31,4 @@ Point.h
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/operations.h
 Point.h
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
-vector
--
 

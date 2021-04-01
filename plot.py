@@ -3,11 +3,12 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas
 import sys
 
-def plot_k_means_iteration(iteration, k):
+def plot_k_means():
 
-    df_dataset = pandas.read_csv('output/k' + str(k) + 'iteration' + str(iteration) + '.csv', header=None)
-    df_centroids = pandas.read_csv('output/k' + str(k) + 'centroids' + str(iteration) + '.csv', header=None)
+    df_dataset = pandas.read_csv('output/points.csv', header=None,)
+    df_centroids = pandas.read_csv('output/centroids.csv', header=None)
 
+    k = len(df_centroids)
     cluster = []
 
     for i in range(k):
@@ -21,9 +22,5 @@ def plot_k_means_iteration(iteration, k):
     plt.gca().set_aspect('equal', adjustable='box')
     plt.show()
 
-k = int(sys.argv[1])
-iterations = int(sys.argv[2])
-
-for i in range(1, iterations + 1):
-    plot_k_means_iteration(i, k)
+plot_k_means()
 

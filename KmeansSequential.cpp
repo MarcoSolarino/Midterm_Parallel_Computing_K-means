@@ -1,11 +1,9 @@
-#include <iostream>
 #include <vector>
 #include <random>
 #include <algorithm>
 #include "Point.h"
 #include "csvhandler.h"
 #include "operations.h"
-#include <chrono>
 
 using namespace std::chrono;
 using namespace std;
@@ -36,75 +34,62 @@ void updateCentroids(vector<Point> *points, vector<Point> *centroids, int k){
 
 }
 
-//returns true if some point changed cluster
-bool assignClusters(vector<Point> *points, vector<Point> *centroids, int k){
-    bool clustersChanged = false;
+void assignClusters(vector<Point> *points, vector<Point> *centroids, int k){
     for (auto &point : *points) {
         point.setClusterDistance(__DBL_MAX__);
         point.setOldCluster(point.getCluster());
 
-        float clusterDistance = point.getClusterDistance();  // the distance between its actual cluster' centroid
-        int clusterIndex = point.getCluster(); // keep trace of witch cluster the point is
+        float clusterDistance = point.getClusterDistance();  // the calculateDistance between its actual cluster' centroid
 
         for (int j = 0; j < k; j++) {
-            float distance = distance3d(centroids->at(j), point);
+            float distance = calculateDistance(centroids->at(j), point);
             if (distance < clusterDistance) {
                 point.setClusterDistance(distance);
                 clusterDistance = distance;
                 point.setCluster(j);
-                clusterIndex = j;
             }
-        }
-
-        if (point.getCluster() != point.getOldCluster()) {
-            clustersChanged = true;
         }
     }
 
-    return clustersChanged;
 }
 
-void kMeans(vector<Point> *points, int epochsLimit, int k) {
-    // Step 1: Create k random centroids
+void kMeans(vector<Point> *points, int iterations, int k) {
+    //Create k random centroids
     vector<Point> centroids;
     random_device rd;
     default_random_engine engine(rd());
     uniform_int_distribution<int> distribution(0, points->size() - 1);
-    int lastEpoch = 0;
     for(int i=0; i<k; i++) {
         int randomLocation = distribution(engine);
         Point c = points->at(randomLocation);
         centroids.push_back(c);
     }
 
-    for(int ep = 0 ; ep < epochsLimit; ep++) {
-        if (ep != 0) {
-            writeCsv(points, &centroids, ep, k);
-        }
 
-        //Step 2: assign dataPoints to the clusters, based on the distance from its centroids
-        bool clustersChanged = assignClusters(points, &centroids, k);
-        if (!clustersChanged) {
-            break;          // exit if clusters has not been changed
-        }
+    for(int i = 0 ; i < iterations; i++) {
+        // if (i != 0) writeCsv(points, &centroids, i, k);
 
-        //Step 3: update centroids
+        assignClusters(points, &centroids, k);
         updateCentroids(points, &centroids, k);
 
-        lastEpoch = ep;
     }
 
-
-    if (lastEpoch == epochsLimit){
-        cout << "Maximum number of iterations reached!";
-    }
-    cout << "iterations = " << lastEpoch + 1 << "\n";
+    writeCsv(points, &centroids);
 }
 
 
 int main() {
     initialize();
-    vector<Point> data = readCsv(1);
-    kMeans(&data, 500, 5);
+    int iterations = 50; //TODO pass by argument
+    int clusters = 5; // TODO pass by argument
+
+    vector<Point> points = readCsv();
+
+    auto start = high_resolution_clock::now();
+    kMeans(&points, iterations, clusters);
+    auto end = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(end - start);
+    return 0;
 
 }

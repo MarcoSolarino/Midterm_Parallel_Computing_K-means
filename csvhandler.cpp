@@ -6,10 +6,10 @@
 #include <filesystem>
 
 
-vector<Point> readCsv(int nd) {
+vector<Point> readCsv() {
     vector<Point> points;
     string line;
-    ifstream file("../input/dataset" + to_string(nd) + ".csv", ifstream::in);
+    ifstream file("../input/dataset.csv", ifstream::in);
 
     while (getline(file, line)) {
         stringstream lineStream(line);
@@ -23,35 +23,26 @@ vector<Point> readCsv(int nd) {
         z = stof(bit);
 
         Point pt = Point(x, y, z);
-
         points.push_back(pt);
+
     }
     file.close();
 
     return points;
 }
 
-void writeCsv(vector<Point>* points, vector<Point>* centroids, int iteration, int k) {
-    ofstream fileIterations("../output/k" + to_string(k) + "iteration" + to_string(iteration) + ".csv", ifstream::out);
+void writeCsv(vector<Point>* points, vector<Point>* centroids) {
+    ofstream filePoints("../output/points.csv", ifstream::out);
     for(auto &point : *points) {
-        fileIterations << point.getX() << "," << point.getY() << "," << point.getZ() << "," << point.getCluster() << "\n";
+        filePoints << point.getX() << "," << point.getY() << "," << point.getZ() << "," << point.getCluster() << "\n";
     }
-    fileIterations.close();
+    filePoints.close();
 
-    ofstream fileCentroids("../output/k" + to_string(k) + "centroids" + to_string(iteration) + ".csv", ifstream::out);
+    ofstream fileCentroids("../output/centroids.csv", ifstream::out);
     for(auto &centroid: *centroids) {
         fileCentroids << centroid.getX() << "," << centroid.getY() << "," << centroid.getZ() << "\n";
     }
-    fileIterations.close();
-
-}
-
-void writeDurationCsv(int* meanVectorDuration) {
-    ofstream fileDuration("durationSeq.csv", ifstream::out);
-    for (int i=0; i<10; i++) { //TODO change 10
-        fileDuration << meanVectorDuration[i] << "\n";
-    }
-    fileDuration.close();
+    filePoints.close();
 }
 
 void initialize(){
