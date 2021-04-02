@@ -1,9 +1,13 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <iostream>
+#include <chrono>
+
 #include "Point.h"
 #include "csvhandler.h"
 #include "operations.h"
+
 
 using namespace std::chrono;
 using namespace std;
@@ -67,29 +71,24 @@ void kMeans(vector<Point> *points, int iterations, int k) {
 
 
     for(int i = 0 ; i < iterations; i++) {
-        // if (i != 0) writeCsv(points, &centroids, i, k);
-
         assignClusters(points, &centroids, k);
         updateCentroids(points, &centroids, k);
-
     }
 
     writeCsv(points, &centroids);
 }
 
 
-int main() {
+int main(int argc, char** argv) {
     initialize();
-    int iterations = 50; //TODO pass by argument
-    int clusters = 5; // TODO pass by argument
-
+    int clusters = stoi(argv[1]);
+    int iterations = stoi(argv[2]);
     vector<Point> points = readCsv();
 
     auto start = high_resolution_clock::now();
     kMeans(&points, iterations, clusters);
     auto end = high_resolution_clock::now();
 
-    auto duration = duration_cast<microseconds>(end - start);
-    return 0;
-
+    auto ms_int = duration_cast<milliseconds>(end - start);
+    return ms_int.count();
 }

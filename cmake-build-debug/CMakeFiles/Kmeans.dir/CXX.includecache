@@ -13,6 +13,10 @@ random
 -
 algorithm
 -
+iostream
+-
+chrono
+-
 Point.h
 /Users/simone/CLionProjects/Midterm_Parallel_Computing_K-means/Point.h
 csvhandler.h
