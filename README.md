@@ -11,7 +11,16 @@ where N is the number of points you want to generate, K is the number of cluster
 python datasetgen.py 1000 3 0.45
 ```
 ## 2 - Run
-You need to pass two arguments: number of clusters and number of iterations
+```
+./Kmeans K I
+```
+Where K is the number of clusters and I the number of iterations.
+
+Example:
+```
+./Kmeans 5 50
+```
+Will look for 5 clusters and it will iterate 50 times the algorithm 
 
 ## 3 - Plotting
 ```
