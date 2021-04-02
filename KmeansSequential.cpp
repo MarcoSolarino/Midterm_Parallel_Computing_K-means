@@ -1,5 +1,4 @@
 #include <vector>
-#include <random>
 #include <algorithm>
 #include <iostream>
 #include <chrono>
@@ -60,15 +59,23 @@ void assignClusters(vector<Point> *points, vector<Point> *centroids, int k){
 void kMeans(vector<Point> *points, int iterations, int k) {
     //Create k random centroids
     vector<Point> centroids;
-    random_device rd;
-    default_random_engine engine(rd());
-    uniform_int_distribution<int> distribution(0, points->size() - 1);
+    vector<int> extractedIndex;
+
+    srand (time(NULL));
     for(int i=0; i<k; i++) {
-        int randomLocation = distribution(engine);
-        Point c = points->at(randomLocation);
+        bool alreadySelected = false;
+        int randomIndex;
+        do {                        //avoid repeating
+            randomIndex = rand() % points->size();
+            for (int e : extractedIndex) {
+                if (randomIndex == e)
+                    alreadySelected = true;
+            }
+        } while (alreadySelected);
+
+        Point c = points->at(randomIndex);
         centroids.push_back(c);
     }
-
 
     for(int i = 0 ; i < iterations; i++) {
         assignClusters(points, &centroids, k);
@@ -77,7 +84,6 @@ void kMeans(vector<Point> *points, int iterations, int k) {
 
     writeCsv(points, &centroids);
 }
-
 
 int main(int argc, char** argv) {
     initialize();
