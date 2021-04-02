@@ -1,4 +1,5 @@
 This repository contains the midterm project for parallel computing course.
+
 This implementation of k-means algorithm is intended for execution time comparison wrt [CUDA version](https://github.com/daikon899/Midterm_K-means_CUDA), so you need to specify manually how many iterations you want to execute.
 
 ## 1 - Generating dataset
