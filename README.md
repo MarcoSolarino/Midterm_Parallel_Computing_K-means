@@ -1,4 +1,3 @@
-# Midterm_Parallel_Computing_K-means
 This repository contains the midterm project for parallel computing course
 
 ## 1 - Generating dataset
