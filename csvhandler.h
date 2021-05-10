@@ -7,7 +7,7 @@
 
 using namespace std;
 
-vector<Point> readCsv();
+vector<Point> readCsv(int n);
 
 void writeCsv(vector<Point>* points, vector<Point>* centroids);
 

@@ -56,26 +56,22 @@ void assignClusters(vector<Point> *points, vector<Point> *centroids, int k){
 
 }
 
-void kMeans(vector<Point> *points, int iterations, int k) {
-    //Create k random centroids
+vector<Point> selectRandom(vector<Point> *points, int n, int k){
     vector<Point> centroids;
-    vector<int> extractedIndex;
 
     srand (time(NULL));
-    for(int i=0; i<k; i++) {
-        bool alreadySelected = false;
-        int randomIndex;
-        do {                        //avoid repeating
-            randomIndex = rand() % points->size();
-            for (int e : extractedIndex) {
-                if (randomIndex == e)
-                    alreadySelected = true;
-            }
-        } while (alreadySelected);
-
-        Point c = points->at(randomIndex);
+    int randIdx = rand() % n;
+    for(int i = 0; i < k; i ++ ){
+        int offset = i * (n / k);
+        Point c = points->at((randIdx + offset) % n);
         centroids.push_back(c);
     }
+    return centroids;
+}
+
+void kMeans(vector<Point> *points, int iterations, int n, int k) {
+
+    vector<Point> centroids = selectRandom(points, n, k);
 
     for(int i = 0 ; i < iterations; i++) {
         assignClusters(points, &centroids, k);
@@ -89,10 +85,11 @@ int main(int argc, char** argv) {
     initialize();
     int clusters = stoi(argv[1]);
     int iterations = stoi(argv[2]);
-    vector<Point> points = readCsv();
+    int n = 1000;
+    vector<Point> points = readCsv(n);
 
     auto start = high_resolution_clock::now();
-    kMeans(&points, iterations, clusters);
+    kMeans(&points, iterations, n, clusters);
     auto end = high_resolution_clock::now();
 
     auto ms_int = duration_cast<milliseconds>(end - start);

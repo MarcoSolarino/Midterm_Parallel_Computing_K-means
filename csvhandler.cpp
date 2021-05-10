@@ -6,12 +6,13 @@
 #include <filesystem>
 
 
-vector<Point> readCsv() {
+vector<Point> readCsv(int n) {
     vector<Point> points;
     string line;
     ifstream file("../input/dataset.csv", ifstream::in);
 
-    while (getline(file, line)) {
+    int i = 0;
+    while (getline(file, line) && i < n) {
         stringstream lineStream(line);
         string bit;
         float x, y, z;
@@ -25,6 +26,7 @@ vector<Point> readCsv() {
         Point pt = Point(x, y, z);
         points.push_back(pt);
 
+        i ++;
     }
     file.close();
 
