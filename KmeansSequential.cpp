@@ -11,8 +11,27 @@
 using namespace std::chrono;
 using namespace std;
 
+
+void assignClusters(vector<Point> *points, vector<Point> *centroids, int k){
+    for (auto &point : *points) {
+        point.setClusterDistance(__DBL_MAX__);
+        point.setOldCluster(point.getCluster());
+
+        float clusterDistance = point.getClusterDistance();
+
+        for (int j = 0; j < k; j++) {
+            float distance = calculateDistance(centroids->at(j), point);
+            if (distance < clusterDistance) {
+                point.setClusterDistance(distance);
+                clusterDistance = distance;
+                point.setCluster(j);
+            }
+        }
+    }
+}
+
 void updateCentroids(vector<Point> *points, vector<Point> *centroids, int k){
-    vector<int> numPoints(k, 0); // keep trace of the number of points in each cluster
+    vector<int> numPoints(k, 0);
     vector<float> sumX(k, 0.0);
     vector<float> sumY(k, 0.0);
     vector<float> sumZ(k, 0.0);
@@ -34,28 +53,9 @@ void updateCentroids(vector<Point> *points, vector<Point> *centroids, int k){
         centroids->at(i).setY(newY);
         centroids->at(i).setZ(newZ);
     }
-
 }
 
-void assignClusters(vector<Point> *points, vector<Point> *centroids, int k){
-    for (auto &point : *points) {
-        point.setClusterDistance(__DBL_MAX__);
-        point.setOldCluster(point.getCluster());
-
-        float clusterDistance = point.getClusterDistance();  // the calculateDistance between its actual cluster' centroid
-
-        for (int j = 0; j < k; j++) {
-            float distance = calculateDistance(centroids->at(j), point);
-            if (distance < clusterDistance) {
-                point.setClusterDistance(distance);
-                clusterDistance = distance;
-                point.setCluster(j);
-            }
-        }
-    }
-
-}
-
+//select k random points with no repetition
 vector<Point> selectRandom(vector<Point> *points, int n, int k){
     vector<Point> centroids;
 
@@ -69,6 +69,7 @@ vector<Point> selectRandom(vector<Point> *points, int n, int k){
     return centroids;
 }
 
+
 void kMeans(vector<Point> *points, int iterations, int n, int k) {
 
     vector<Point> centroids = selectRandom(points, n, k);
@@ -81,11 +82,12 @@ void kMeans(vector<Point> *points, int iterations, int n, int k) {
     writeCsv(points, &centroids);
 }
 
+
 int main(int argc, char** argv) {
     initialize();
-    int clusters = stoi(argv[1]);
-    int iterations = stoi(argv[2]);
-    int n = 1000;
+    int n = stoi(argv[1]);
+    int clusters = stoi(argv[2]);
+    int iterations = stoi(argv[3]);
     vector<Point> points = readCsv(n);
 
     auto start = high_resolution_clock::now();
