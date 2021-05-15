@@ -7,28 +7,34 @@ first you need to generate dataset
 ```
 python datasetgen.py N K STD
 ```
-where N is the number of points you want to generate, K is the number of clusters and STD is standard deviation of points from clusters. Here is an example:
+where N is the number of points you want to generate, K is the number of clusters and STD is standard deviation of points from clusters. 
+Here is an example:
 ```
 python datasetgen.py 1000 3 0.45
 ```
+this will genearate a dataset of 1000 points inside input folder
+
 ## 2 - Run
 ```
-./Kmeans K I
+./Kmeans N K I
 ```
-Where K is the number of clusters and I the number of iterations.
+Where N is the number of points to read from dataset, K is the number of clusters and I the number of iterations.
 
 Example:
 ```
-./Kmeans 5 50
+./Kmeans 1000 5 50
 ```
-Will look for 5 clusters and it will iterate 50 times the algorithm 
+Will look for 5 clusters through first 1000 points of dataset and it will iterate 50 times. 
 
-## 3 - Plotting
+## 3 - Check output
+After running program you can check output results with
 ```
 python plot.py
 ```
-After running program you can plot result
 
-## Other k-means versions
+### Note
+The code is made to work with 3D points but datasetgen.py will generate points with z = 0.0. This is intended to ease result checking with plot.py
+
+## Other versions
 - [CUDA](https://github.com/daikon899/Midterm_K-means_CUDA)
 - there is also an [Hadoop version](https://github.com/daikon899/Midterm_K-means_hadoop) (no execution time comparison)
