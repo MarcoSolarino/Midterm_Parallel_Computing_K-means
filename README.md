@@ -1,40 +1,31 @@
-This repository contains the midterm project for parallel computing course.
+# Intro
 
-This implementation of k-means algorithm is intended for execution time comparison wrt [CUDA version](https://github.com/daikon899/Midterm_K-means_CUDA), so you need to specify manually how many iterations you want to execute.
+This implementation of k-means algorithm is made for execution time comparison wrt [GPU accelerated version](https://github.com/sim-pez/k_means_gpu). For this reason the algorithm will not end when reaching convergence, but you need to specify the number of iterations when launching the program.
 
-## 1 - Generating dataset
-first you need to generate dataset
+# Generating dataset
+
+You can generate an _N_ points dataset using ```datasetgen.py```. You have to write also the number of clusters _K_ and the standard deviation. The command will be like:
 ```
 python datasetgen.py N K STD
 ```
-where N is the number of points you want to generate, K is the number of clusters and STD is standard deviation of points from clusters. 
-Here is an example:
+example:
 ```
 python datasetgen.py 1000 3 0.45
 ```
-this will genearate a dataset of 1000 points inside input folder
 
-## 2 - Run
-```
-./Kmeans N K I
-```
-Where N is the number of points to read from dataset, K is the number of clusters and I the number of iterations.
+### Note
+The code is made to work on 3 axis but the script will generate points with the third coordinate equal to _0.0_. This is to ease the result checking with ```plot.py```
 
-Example:
-```
-./Kmeans 1000 5 50
-```
-Will look for 5 clusters through first 1000 points of dataset and it will iterate 50 times. 
 
-## 3 - Check output
-After running program you can check output results with
+# Plotting
+You can check output results with
 ```
 python plot.py
 ```
 
-### Note
-The code is made to work with 3D points but datasetgen.py will generate points with z = 0.0. This is intended to ease result checking with plot.py
+# Other versions
+- [GPU accelerated version](https://github.com/sim-pez/k_means_gpu)
+- there is also a [distributed system version](https://github.com/sim-pez/k_means_distributed)
 
-## Other versions
-- [CUDA](https://github.com/daikon899/Midterm_K-means_CUDA)
-- there is also an [Hadoop version](https://github.com/daikon899/Midterm_K-means_hadoop) (no execution time comparison)
+# Acknowledgments
+Parallel Computing - Computer Engineering Master Degree @[University of Florence](https://www.unifi.it/changelang-eng.html).
